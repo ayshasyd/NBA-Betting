@@ -1,0 +1,17 @@
+mydata = read.csv("bt_2014.csv")
+bet_team_pts = (mydata$pts)+ (mydata$line_adjustor)
+
+bet_oppteam_pts = (mydata$o_pts_alwd)-(mydata$line_adjustor)
+
+library(plyr)
+bet_status = ifelse(bet_team_pts > bet_oppteam_pts, "won", "lost")
+Actual_Betting= count(bet_status)
+Proj_team_pts = (mydata$pts_proj)+(mydata$line_adjustor)
+
+Proj_oppteam_pts = (mydata$o_pts_alwd_proj)-(mydata$line_adjustor)
+
+Proj_status = ifelse(Proj_team_pts > Proj_oppteam_pts, "won", "lost")
+Projected_Betting = count(Proj_status)
+
+Actual_Betting
+Projected_Betting
